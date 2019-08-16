@@ -16,13 +16,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final UserService userService;
 
-    public WebSecurityConfig(DataSource dataSource, UserService userService) {
+    public WebSecurityConfig(UserService userService) {
         this.userService = userService;
     }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
+                .cors().and()
                 .authorizeRequests()
                     .antMatchers("/", "/registration").permitAll()
                     .anyRequest().authenticated()
