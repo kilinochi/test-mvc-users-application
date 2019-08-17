@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Collections;
 
-//@RequestMapping("/registration")
 @Controller
 public final class RegistrationController  {
 
@@ -18,12 +17,12 @@ public final class RegistrationController  {
         this.userRepository = userRepository;
     }
 
-    @GetMapping("registration")
+    @GetMapping("/registration")
     public String registration() {
         return "registration";
     }
 
-    @PostMapping("registration")
+    @PostMapping("/registration")
     public String addUser(User user) {
         final User userfromDb = userRepository.findByUsername(user.getUsername());
         if(userfromDb != null) {

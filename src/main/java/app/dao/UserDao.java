@@ -10,7 +10,6 @@ import java.util.stream.StreamSupport;
 @Component
 public class UserDao {
 
-
     private final UserRepository userRepository;
 
     public UserDao(UserRepository userRepository) {

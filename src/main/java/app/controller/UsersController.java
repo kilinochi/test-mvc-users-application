@@ -19,7 +19,7 @@ public final class UsersController {
         this.userdao = userdao;
     }
 
-    @GetMapping("/")
+    @GetMapping()
     public User [] getAll() {
         return userdao.getAll();
     }
