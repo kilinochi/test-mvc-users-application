@@ -6,22 +6,46 @@
     <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
     <title>Title</title>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
-    <script th:src="@{/javascript/index.js}"></script>
+    <script th:src="@{/javascript/index.js}" type="text/javascript"></script>
 </head>
 <body>
 <a href="/registration">Registration</a>
 <div class="container" ng-app="myApp" ng-controller="myCtrl">
-    <h1>
-        List of users
-    </h1>
+    <h1>List of users</h1>
     <form th:action="@{/logout}" method="post" class="logout-form">
-        <input type="hidden" th:name = "${_csrf.parameterName}" th:value="${_csrf.token}">
+        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
         <input type="submit" value="Sign Out">
     </form>
     <div class="list-wrapper">
-        <ul class="user_list">
-            <li ng-repeat="login in users track by $index">{{login}}</li>
-        </ul>
+        <label>
+            By login:
+            <input type="text" ng-model="filter_login" ng-change="">
+        </label>
+        <label>
+            By Name
+            <input type="text" ng-model="filter_name" ng-change="">
+        </label>
+        <label>
+            By Email
+            <input type="text" ng-model="filter_email" ng-change="">
+        </label>
+        <table style="border: solid 1px black">
+            <tr>
+                <th>Login</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Password</th>
+            </tr>
+            <tr ng-repeat="user in users track by $index"
+                ng-show="user.login.indexOf(filter_login) >= 0
+                && user.username.indexOf(filter_name) >= 0
+                && user.email.indexOf(filter_email) >= 0">
+                <td style="border: solid 1px black">{{user.login}}</td>
+                <td style="border: solid 1px black">{{user.username}}</td>
+                <td style="border: solid 1px black">{{user.email}}</td>
+                <td style="border: solid 1px black">{{user.password}}</td>
+            </tr>
+        </table>
     </div>
 </div>
 </body>

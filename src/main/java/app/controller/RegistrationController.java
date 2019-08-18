@@ -22,6 +22,11 @@ public final class RegistrationController  {
         return "registration";
     }
 
+    @GetMapping("/login")
+    public String login() {
+        return "login";
+    }
+
     @PostMapping("/registration")
     public String addUser(User user) {
         final User userfromDb = userRepository.findByUsername(user.getUsername());

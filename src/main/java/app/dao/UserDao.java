@@ -5,7 +5,6 @@ import app.repository.UserRepository;
 import org.springframework.stereotype.Component;
 
 import org.springframework.transaction.annotation.Transactional;
-import java.util.stream.StreamSupport;
 
 @Component
 public class UserDao {
@@ -18,7 +17,6 @@ public class UserDao {
 
     @Transactional
     public User[] getAll() {
-        final Iterable <User> users = userRepository.getAllUsers();
-        return StreamSupport.stream(users.spliterator(), true).toArray(User[]::new);
+        return userRepository.findAllUsers().toArray(new User[0]);
     }
 }
