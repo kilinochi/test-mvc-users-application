@@ -1,1 +1,1 @@
-Test app for Emergn Lab
+Test app for Emergn Lab (monolith application)
