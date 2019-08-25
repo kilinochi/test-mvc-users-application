@@ -21,7 +21,7 @@ public final class UsersController {
     }
 
     @GetMapping()
-    public Object getAll(Authentication auth) {
+    public User[] getAll(Authentication auth) {
         User[] users = userdao.getAll();
         for (User u : users) {
             String name = auth.getName();
